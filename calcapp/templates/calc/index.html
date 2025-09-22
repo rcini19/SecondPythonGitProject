@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+  <section class="card">
+    <h2>{{ title }}</h2>
+    <p class="subtle">Enter two numbers and choose an operation.</p>
+
+    {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+    {% if result is not None %}<div class="alert alert-success">Result: <strong>{{ result }}</strong></div>{% endif %}
+
+    <form method="post" class="calc-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="actions">
+        <button type="submit" class="btn">Calculate</button>
+        <a class="btn btn-secondary" href=".">Clear</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}
